@@ -55,6 +55,6 @@ public class CuteGoat implements IGoat {
     * @return The goats name.
     */
    public String toString () {
-      return "Goat " + name;
+      return name + " the goat";
    }
 }

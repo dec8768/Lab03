@@ -1,22 +1,26 @@
-import Queues.IQueue;
-import Queues.ArrayQueue;
-import Queues.LinkedQueue;
+import queues.IQueue;
+import queues.ArrayQueue;
+import queues.LinkedQueue;
 
-import Trolls.ITroll;
-import Trolls.CuteTroll;
-import Trolls.BattleTroll;
+import trolls.ITroll;
+import trolls.CuteTroll;
+import trolls.BattleTroll;
+
+import goats.IGoat;
+import goats.CuteGoat;
+import goats.BattleGoat;
 
 /**
  * @author Bruce Herring
  *
- * Main class for the Goats Vs Troll demo. Creates the goats' queue,
+ * Main class for the goats Vs Troll demo. Creates the goats' queue,
  * the troll, and the bridge. Simulates the goats trying to cross
  * the bridge.
 
  * Usage: (Cute Version)   - java bridge
  *        (Battle Version) - java bridge <num goats>
  */
-public class Bridge <T> {
+public class Bridge <T extends IGoat> {
     private IQueue<T> goatQueue;
     private ITroll<T> troll;
     private enum GameType {
@@ -72,17 +76,12 @@ public class Bridge <T> {
         while (!goatQueue.isEmpty()) {
             T goat = goatQueue.front();
 
-            System.out.println(goat + " the goat approaches the bridge.");
-
-
+            System.out.println (goat.approach ());
 
             if (troll.isActive()) {
                 System.out.println("A troll stands guard.");
 
-                java.util.Random ran = new java.util.Random();
-                int powerChange = ran.nextInt(GOAT_MAX_DAMAGE);
-
-                troll.adjustPower(powerChange);
+                troll.adjustPower(goat.interact ());
 
                 if (troll.isActive()) {
                     troll.interact(goat);
@@ -107,26 +106,32 @@ public class Bridge <T> {
      */
     public static void main (String[] args) {
 
+        java.util.Random ran = new java.util.Random();
+        
         // Based on the game type, execute the correct version.
 
         if (args.length == 1) {
             int size = Integer.parseInt(args[0]);
 
-            Bridge<String> myBridge = new Bridge<>(size);
+            Bridge<IGoat> myBridge = new Bridge<>(size);
 
             // For the battle version, give the goats string names.
             for (char c = 'A'; c < size + 'A'; c++) {
-                myBridge.addGoat(c + "opsy");
+                int damage = ran.nextInt (GOAT_MAX_DAMAGE);
+                IGoat bg = new BattleGoat (c + "opsy", damage);
+                myBridge.addGoat(bg);
             }
 
             myBridge.runSimulation();
         }
         else {
-            Bridge<Integer> myBridge = new Bridge<> ();
+            Bridge<IGoat> myBridge = new Bridge<> ();
 
             // For the cute version, name the goats after integers.
             for (int i = 1; i <= CUTE_SIZE; i++) {
-                myBridge.addGoat(i);
+                int happiness = ran.nextInt (GOAT_MAX_DAMAGE);
+                IGoat cg = new CuteGoat (i, happiness);
+                myBridge.addGoat(cg);
             }
 
             myBridge.runSimulation ();
