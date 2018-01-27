@@ -36,7 +36,7 @@ public class CuteGoat implements IGoat {
     * @return The goats conversation string
     */
    public String approach () {
-      return name + " hops along the bridge.";
+      return this + " hops along the bridge.";
    }
 
    /**
