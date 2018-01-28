@@ -74,7 +74,7 @@ public class Bridge {
         System.out.println("Welcome to Goats Vs Troll - " + type + " Edition!");
 
         while (!goatQueue.isEmpty()) {
-            IGoat goat = goatQueue.front();
+            IGoat goat = goatQueue.dequeue();
 
             System.out.println (goat.approach ());
 
@@ -83,16 +83,23 @@ public class Bridge {
 
                 troll.adjustPower(goat.interact ());
 
+                // If the troll survived the goat interaction ...
                 if (troll.isActive()) {
                     troll.interact(goat);
-                } else {
+                    
+                    // If the goat survived the troll interaction add it to the
+                    // back of the line to try again.
+                    if (goat.isActive()) {
+                        goatQueue.enqueue (goat);
+                        System.out.println (goat + " returns to the back of the line.");
+                    }
+
+                } else { // The troll is finished
                     troll.finished(goat);
                 }
             } else {
                 System.out.println("The path is clear and " + goat + " crosses the bridge.");
             }
-
-            goatQueue.dequeue();
         }
 
         System.out.println("Simulation complete.");
