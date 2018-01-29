@@ -17,6 +17,11 @@ public class BattleGoat implements IGoat
     */
    private final int damage;
 
+    /**
+    * Flag used to denote if the goat is still active.
+    */
+    private boolean active = true;
+
    /**
     * Constructor
     *
@@ -35,7 +40,7 @@ public class BattleGoat implements IGoat
     * @return The goats conversation string
     */
    public String approach () {
-      return name + " cautiously approaches the bridge.";
+      return name + " insert approach conversation here";
    }
 
       /**
@@ -46,6 +51,24 @@ public class BattleGoat implements IGoat
     */
    public int interact () {
       return damage;
+   }
+
+      /**
+    * Accessor for the goat's active property.
+    *
+    * @return true if the goat is active, false otherwise
+    */
+    public boolean isActive () {
+      return active;
+    }
+
+   /**
+    * Mutator for the goat's active property.
+    *
+    * @param isActive true to make the goat active, false to set it inactive
+    */
+   public void setActive (boolean isActive) {
+      active = isActive;
    }
 
    /**

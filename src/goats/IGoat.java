@@ -21,4 +21,18 @@ public interface IGoat {
     * @return Goat interaction impact on the troll.
     */
    int interact ();
+
+   /**
+    * Method used to determine if the goat is still active.
+    *
+    * @return True if the goat is still active, false otherwise.
+    */
+   boolean isActive ();
+
+   /**
+    * Mutator for the goats active property.
+    *
+    * @param isActive true to make the goat active, false to set it inactive
+    */
+   void setActive (boolean isActive);
 }
