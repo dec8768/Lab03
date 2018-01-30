@@ -15,12 +15,12 @@ public interface IGoat {
    String approach ();
 
    /**
-    * Method which will be called when the goat interacts with
-    * the troll.
+    * Method which will be called when the goat comes in
+    * contact with a troll.
     *
-    * @return Goat interaction impact on the troll.
+    * @return Goat impact on the troll.
     */
-   int interact ();
+    int impact ();
 
    /**
     * Method used to determine if the goat is still active.

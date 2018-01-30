@@ -43,13 +43,13 @@ public class BattleGoat implements IGoat
       return name + " insert approach conversation here";
    }
 
-      /**
+    /**
     * Action which should be used when the goat interacts with
     * another entity.
     *
     * @return The damage the goat will impart on the other entity
     */
-   public int interact () {
+   public int impact () {
       return damage;
    }
 

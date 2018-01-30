@@ -90,7 +90,7 @@ public class Bridge {
             // If the troll is still active
 
 
-                // Adjust the troll's power by the goat's interaction amount
+                // Adjust the troll's power by the goat's impact amount
 
 
                 // If the troll survived the goat interaction ...

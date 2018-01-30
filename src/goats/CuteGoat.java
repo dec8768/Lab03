@@ -46,11 +46,11 @@ public class CuteGoat implements IGoat {
 
    /**
     * Action which should be used when the goat interacts with
-    * another entity.
+    * the troll.
     *
     * @return The happiness the goat will impart on the other entity
     */
-   public int interact () {
+   public int impact () {
       return happiness;
    }
 
